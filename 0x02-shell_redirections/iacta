@@ -1,0 +1,4 @@
+echo "This is my test file iacta"
+echo "I created it to see how head and tail combination will print a specific line in a file"
+echo "This my third line, I hope my script in 6-third_line prints it"
+echo "Fingers crossed"
