@@ -3,6 +3,8 @@
 # it echoes the given prompts.
 # -le stands for "less than or equal to"
 
+echo "Hour: 0"
+
 START=1
 HOUR=1
 
