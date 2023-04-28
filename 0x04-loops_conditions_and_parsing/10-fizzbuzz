@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# This script desplays numbers from 1-100. in the cases of multiples of,
+# 3, 5, 3 and 5, it echoes the given prompts.
+# -le stands for "less than or equal to"
+
+START=1
+
+while [[ START -le 100 ]]
+do
+	if [ $((START%3)) == 0 ] && [ $((START%5)) == 0 ]
+	then
+		echo "FizzBuzz"
+	elif [ $((START%3)) == 0 ]
+	then 
+		echo "Fizz"
+	elif [ $((START%5)) == 0 ]
+	then
+		echo "Buzz"
+	else
+		echo "$START"
+	fi
+	((START+= 1))
+done
