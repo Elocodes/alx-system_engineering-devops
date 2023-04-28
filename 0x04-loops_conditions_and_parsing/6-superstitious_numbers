@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# This script desplays numbers from 1-20. in the cases of 4, 9, 17,
+# it echoes the given prompts.
+# -le stands for "less than or equal to"
+
+START=1
+
+while [[ START -le 20 ]]
+do
+	echo "$START"
+	case $START in
+		4)
+			echo "bad luck from China"
+			;;
+		9)
+			echo "bad luck from Japan"
+			;;
+		17)
+			echo "bad luck from Italy"
+			;;
+	esac
+	((START+= 1))
+done
