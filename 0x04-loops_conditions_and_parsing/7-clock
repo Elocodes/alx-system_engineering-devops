@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This script desplays numbers from 1-20. in the cases of 4, 9, 17,
+# it echoes the given prompts.
+# -le stands for "less than or equal to"
+
+START=1
+HOUR=1
+
+while [[ START -le 59 ]]
+do
+	echo "$START"
+	if [[ START -eq 59 ]]
+	then 
+		echo "Hour: $HOUR"
+		((HOUR+= 1))
+		((START= 0))
+	fi
+	((START+= 1))
+done
