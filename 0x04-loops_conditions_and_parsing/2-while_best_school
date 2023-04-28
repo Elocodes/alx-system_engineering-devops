@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times
+# -le stands for "less than or equal to"
+
+START=1
+
+while [[ START -le 10 ]]
+do
+	echo "Best School"
+	((START+= 1))
+done
