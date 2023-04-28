@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#script kills a running process
+
+#id of process to kill
+pkill "bash ./4-to_infinity_and_beyond" -f
