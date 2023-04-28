@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script lists all the currently running processes
+
+ps -auxf
