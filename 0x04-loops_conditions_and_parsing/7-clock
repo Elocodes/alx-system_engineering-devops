@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# This script desplays numbers from 1-20. in the cases of 4, 9, 17,
-# it echoes the given prompts.
+# This script desplays the time for 12 hours and 59 minutes
+#Hours are displayed from 0-12, minutes from 1-59 for each hour
 # -le stands for "less than or equal to"
 
 echo "Hour: 0"
@@ -16,6 +16,10 @@ do
 		echo "Hour: $HOUR"
 		((HOUR+= 1))
 		((START= 0))
+		if [[ HOUR -gt 12 ]]
+		then 
+			break
+		fi
 	fi
 	((START+= 1))
 done

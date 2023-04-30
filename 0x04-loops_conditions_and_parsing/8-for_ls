@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#script prints all tthe files in the current directory. After it had
+#split the file name at the delimeter "-", it prints the second field
+#(-f2) of the name
+
+for FILE in *
+do
+	echo "$FILE" | cut -d - -f2
+done
