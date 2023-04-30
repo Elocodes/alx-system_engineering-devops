@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#script checks for the existence of a file or directory in the current
+#directory.
+# option -e checks if the name in quote exists, be it a file or directory
+# option -s checks for the size of the file or directory. if size is 0 bytes
+# then its empty
+# option -f checks if the name in quote is a file and not directory
+
+if [[ -e "school" ]]
+then	
+	echo "school file exists"
+	if [[ -s "school" ]]
+	then
+		echo "school file is not empty"
+	else
+		echo "school file is empty"
+	fi
+	if [[ -f "school" ]]
+	then
+		echo "school is a regular file"
+	fi
+else
+	echo "school file does not exist"
+fi

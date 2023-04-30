@@ -3,23 +3,17 @@
 #Hours are displayed from 0-12, minutes from 1-59 for each hour
 # -le stands for "less than or equal to"
 
-echo "Hour: 0"
+HOUR=0
 
-START=1
-HOUR=1
-
-while [[ START -le 59 ]]
+while [[ HOUR -lt 13 ]]
 do
-	echo "$START"
-	if [[ START -eq 59 ]]
-	then 
-		echo "Hour: $HOUR"
-		((HOUR+= 1))
-		((START= 0))
-		if [[ HOUR -gt 12 ]]
-		then 
-			break
-		fi
-	fi
-	((START+= 1))
+	echo "Hour: $HOUR"
+	MINS=1
+	while [[ MINS -le 59 ]]
+	do
+		echo "$MINS"
+		((MINS+=1))
+
+	done
+	((HOUR+= 1))
 done
