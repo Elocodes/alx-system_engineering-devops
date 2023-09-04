@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#script installs nginx on web server web-02 and configures it
+
+# install nginx
+sudo apt-get update
+sudo apt-get -y install nginx
+
+#sudo service nginx start
+#sudo ufw allow 'Nginx HTTP'
+
+# create project dir at root /var/www, then create first file 'hello world'
+cd /var/www
+sudo mkdir web02test.com
+cd web02test.com
+sudo echo "Hello World!" > index.html
+
+# set configuration for project
+cd /etc/nginx/sites-available
+sudo echo "server {
+		# listen on port 80 for incoming http requests
+		listen 80;
+
+		# The url we want this server config to apply to
+		server_name web02test.com;
+
+		# The document root of our site/project i.e where its files are located
+		root /var/www/web02test.com;
+
+		# which files to look for by default when accessing directories of our site
+		index index.html;
+}" > web02test.com_config
+
+# activate configuration by creating a symbolic link to link congif file path to sites-enabled
+sudo ln -s /etc/nginx/sites-available/web02test.com_config /etc/nginx/sites-enabled 
+
+		
+sudo service nginx restart
