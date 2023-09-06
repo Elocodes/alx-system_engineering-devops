@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# link sites-available to sites enabled to contain current config, then run without running status
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
+sudo service nginx stop
