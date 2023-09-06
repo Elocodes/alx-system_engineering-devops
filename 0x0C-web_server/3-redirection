@@ -1,11 +1,46 @@
 #!/usr/bin/env bash
-#script installs nginx on web server web-01
-# /redirect_me redirects to another page
+# script installs nginx on web02 and and adds custom header.
+# sudo bash -c executes command as root. it ensures the entire block of code
+# inside the single quotes is executed with superuser privileges.
+# cat > /etc/nginx/sites-available/web02test.com_config <<EOF writes
+# to my project config file. The <<EOF is a here document that allows one
+# to write multiple lines of text to a file.
 
 sudo apt-get update
 sudo apt-get -y install nginx
-sudo ufw allow 'Nginx HTTP'
-echo "Hello World!" > /var/www/html/index.html
-# redirects user to a youtube page
-sed -i  '37i\rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4;' /etc/nginx/sites-available/default
+
+# create project dir at root /var/www, then create first file 'hello world'
+sudo mkdir -p /var/www/web02test.com
+sudo echo "Hello World!" | sudo tee /var/www/web02test.com/index.html
+
+# set configuration for project
+sudo bash -c 'cat > /etc/nginx/sites-available/web02test.com_config <<EOF
+server {
+    # listen on port 80 for incoming http requests
+    listen 80;
+
+    # The url we want this server config to apply to
+    server_name web02test.com;
+
+    # The document root of our site/project i.e where its files are located
+    root /var/www/web02test.com;
+
+    # which files to look for by default when accessing directories of our site
+    index index.html;
+
+    # include custom http header (all response from this server shows the hostname)
+    add_header X-Served-By "$host";
+
+    # set location blocks that handles specific types of incoming requests
+
+    # url redirection (301 for permanently moved to a new url)
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+}
+EOF'
+
+# activate configuration by creating a symbolic link to link congif file path to sites-enabled
+sudo ln -s /etc/nginx/sites-available/web02test.com_config /etc/nginx/sites-enabled
+
 sudo service nginx restart
