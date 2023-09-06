@@ -10,20 +10,45 @@ sudo apt-get update
 sudo apt-get -y install nginx
 
 # create project dir at root /var/www, then create first file 'hello world'
-sudo mkdir -p /var/www/web02test.com
-sudo echo "Hello World!" | sudo tee /var/www/web02test.com/index.html
+sudo mkdir -p /var/www/nginxtest.com
+sudo echo "
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>" | sudo tee /var/www/nginxtest.com/index.html
 
 # set configuration for project
-sudo bash -c 'cat > /etc/nginx/sites-available/web02test.com_config <<EOF
+sudo bash -c 'cat > /etc/nginx/sites-available/nginxtest.com_config <<EOF
 server {
     # listen on port 80 for incoming http requests
     listen 80;
 
     # The url we want this server config to apply to
-    server_name web02test.com;
+    server_name nginxtest.com;
 
     # The document root of our site/project i.e where its files are located
-    root /var/www/web02test.com;
+    root /var/www/nginxtest.com;
 
     # which files to look for by default when accessing directories of our site
     index index.html;
@@ -41,6 +66,6 @@ server {
 EOF'
 
 # activate configuration by creating a symbolic link to link congif file path to sites-enabled
-sudo ln -s /etc/nginx/sites-available/web02test.com_config /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/nginxtest.com_config /etc/nginx/sites-enabled
 
 sudo service nginx restart
