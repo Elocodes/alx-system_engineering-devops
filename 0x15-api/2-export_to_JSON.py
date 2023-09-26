@@ -17,4 +17,4 @@ if __name__ == "__main__":
     with open("{}.json".format(empl_id), "w") as f:
         json.dump({empl_id: [{'task': t.get('title'),
                              'completed': t.get('completed'),
-                             'username': usrname} for t in todo]}, f)
+                              'username': usrname} for t in todo]}, f)
